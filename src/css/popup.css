@@ -1,0 +1,35 @@
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak],
+.ng-cloak, .x-ng-cloak,
+.ng-hide {
+  display: none !important;
+}
+
+ng\:form {
+  display: block;
+}
+
+html, body{
+  height: 100%;
+  margin: 0px;
+}
+body {
+  padding: 55px 5px 5px 5px;
+}
+.breadcrumb {
+  background-color: #E9E9E9;
+  margin-bottom: 10px;
+}
+.main {
+  min-height: 100%;
+  position: relative;
+}
+textarea.form-control {
+  resize: none;
+  height: 460px;
+}
+.footer {
+  position: relative;
+  z-index: 10;
+  margin-top: -20px;
+  clear: both;
+}

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html ng-app="toolbox" ng-csp>
+  <head>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/popup.min.css" rel="stylesheet"/>
+    <title>工具箱</title>
+  </head>
+  <body ng-controller="ToolboxCtrl" class="ng-hide" ng-show="show">
+    <header class="navbar navbar-default navbar-fixed-top" role="banner">
+      <div class="container">
+        <nav class="collapse navbar-collapse" role="navigation">
+          <ul class="nav navbar-nav">
+            <li class="dropdown" ng-repeat="g in commands">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                {{ g.title }}
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li ng-class="{divider:i.name == ''}" ng-repeat="i in g.items">
+                  <a href="#" ng-click="i.run()" ng-hide="i.name == ''">
+                    {{ i.name }}
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav pull-right">
+            <li>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="glyphicon glyphicon-wrench"></i>
+                {{ i18n('settings') }}
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li ng-class="{disabled:history.length == 0}">
+                  <a  target="_blank" href="#"
+                  hotkey="Ctrl+U" ng-click="undo()">
+                    {{ i18n('undo') }}
+                    <span class="pull-right">Ctrl+U</span>
+                  </a>
+                </li>
+                <li ng-class="{disabled:history.length == 0}">
+                  <a  target="_blank" href="#"
+                  hotkey="Ctrl+R" ng-click="repeat()">
+                    {{ i18n('repeat') }}
+                    <span class="pull-right">Ctrl+R</span>
+                  </a>
+                </li>
+                <li ng-class="{disabled:history.length == 0}">
+                  <a  target="_blank" href="#"
+                  hotkey="Ctrl+Y" ng-click="clean()">
+                    {{ i18n('clean') }}
+                    <span class="pull-right">Ctrl+Y</span>
+                  </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a href="#" ng-click="one = !one">
+                    <div class="form-group">
+                      <label class="checkbox-inline">
+                        <input type="checkbox" id="one" value="true"
+                        ng-model="one"/>
+                        {{ i18n('one_label') }}
+                      </label>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="glyphicon glyphicon-exclamation-sign"></i>
+                {{ i18n('help') }}
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a  target="_blank"
+                  href="https://chrome.google.com/webstore/detail/dckjbbhlbmojeohhjlobfllblcoannge/reviews">
+                    <i class="glyphicon glyphicon-star"></i>
+                    {{ i18n('reviews') }}
+                  </a>
+                </li>
+                <li>
+                  <a target="_blank"
+                  href="https://chrome.google.com/webstore/support/dckjbbhlbmojeohhjlobfllblcoannge?#bug">
+                    <i class="glyphicon glyphicon-remove-circle"></i>
+                    {{ i18n('bug') }}
+                  </a>
+                </li>
+                <li>
+                  <a target="_blank"
+                  href="https://chrome.google.com/webstore/support/dckjbbhlbmojeohhjlobfllblcoannge?#question">
+                    <i class="glyphicon glyphicon-question-sign"></i>
+                    {{ i18n('question') }}
+                  </a>
+                </li>
+                <li>
+                  <a target="_blank"
+                  href="https://chrome.google.com/webstore/support/dckjbbhlbmojeohhjlobfllblcoannge?#feature">
+                    <i class="glyphicon glyphicon-heart"></i>
+                    {{ i18n('feature') }}
+                  </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a target="_blank" href="#" hotkey="F1" ng-click="about()">
+                    <i class="glyphicon glyphicon-exclamation-sign"></i>
+                    {{ i18n('about') }}
+                    <span class="pull-right">F1</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div><!-- container -->
+    </header>
+    <div class="main">
+      <ol class="breadcrumb" ng-show="one">
+        <li>
+          <div class="btn-group">
+            <button class="btn btn-warning"
+          ng-click="undo()" ng-disabled="history.length == 0">
+            {{ i18n('undo') }}
+          </button>
+          <button class="btn btn-success"
+          ng-click="repeat()" ng-disabled="history.length == 0">
+            {{ i18n('repeat') }}
+          </button>
+          <button class="btn btn-danger"
+          ng-click="clean()" ng-disabled="history.length == 0">
+            {{ i18n('clean') }}
+          </button>
+        </div><!-- btn-group -->
+      </li>
+      <li ng-repeat="h in history">
+        <a href="#" class="btn btn-info"
+        ng-click="h.run()">
+          {{ h.name }}
+        </a>
+      </li>
+    </ol>
+    <textarea class="form-control" id="input"
+      ng-model="input"></textarea>
+    </div><!-- main -->
+    <div class="help-block footer">
+      {{ i18n('t_row') }}:
+      <span class="badge badge-info">{{ inputRow }}</span>
+      {{ i18n('t_byte') }}:
+      <span class="badge badge-info">{{ inputCount }}</span>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/hotkey.min.js"></script>
+    <script src="js/ui-bootstrap-tpls.min.js"></script>
+    <script src="js/core-min.js"></script>
+    <script src="js/md5-min.js"></script>
+    <script src="js/sha1-min.js"></script>
+    <script src="js/beautify-css.js"></script>
+    <script src="js/beautify-html.js"></script>
+    <script src="js/beautify.js"></script>
+    <script src="js/google-analytics-bundle.js"></script>
+    <script src="js/main.min.js"></script>
+  </body>
+</html>

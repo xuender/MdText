@@ -1,0 +1,38 @@
+<div class="modal-header">
+  {{ i18n('about') }}
+</div><!-- model-header -->
+<div class="modal-body">
+  <div class="pull-right">
+    <img src="img/coffee.png"/>
+    <div class="text-info text-center">{{ i18n('coffee') }}</div>
+  </div>
+  <h3>
+    <img src="img/48.png" align="bottom"/>
+    {{ i18n('name') }}
+  </h3>
+  <p>
+    {{ i18n('description') }}
+  </p>
+  <p>
+    <a target="_blank" title="Chrome Web Store"
+    href="https://chrome.google.com/webstore/detail/dckjbbhlbmojeohhjlobfllblcoannge">
+      <img src="img/chrome.png"/>
+    </a>
+    <a target="_blank" title="GitHub project"
+    href="https://github.com/xuender/toolbox">
+      <img src="img/github.png"/>
+    </a>
+    <a target="_blank" title="Mail to me"
+    href="mailto:xuender@gmail.com">
+      <img src="img/gmail.png"/>
+    </a>
+  </p>
+  <p>
+    <i class="glyphicon glyphicon-copyright-mark"></i>2012-2014
+  </p>
+  <a id="a_xuender" href="http://xuender.me" target="_blank">
+    xuender.me</a> 
+</div><!-- modal-body -->
+<div class="modal-footer">
+  <button class="btn btn-primary" ng-click="close()">{{ i18n('close') }}</button>
+</div><!-- modal-footer -->
