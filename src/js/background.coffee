@@ -9,7 +9,7 @@ chrome.app.runtime.onLaunched.addListener(->
     bounds:
       'width': 800
       'height': 600
-    id: 'toolbox'
+    id: 'MdTest'
     minWidth: 770
     minHeight: 500
     singleton: true

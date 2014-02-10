@@ -1,0 +1,110 @@
+<header class="navbar navbar-default navbar-fixed-top" role="banner">
+  <div class="container">
+    <nav class="collapse navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          测试
+            <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="#" ng-click="md()">
+              测试
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav pull-right">
+        <li>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-wrench"></i>
+            {{ i18n('settings') }}
+            <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li ng-class="{disabled:history.length == 0}">
+              <a  target="_blank" href="#"
+              hotkey="Ctrl+U" ng-click="undo()">
+                {{ i18n('undo') }}
+                <span class="pull-right">Ctrl+U</span>
+              </a>
+            </li>
+            <li ng-class="{disabled:history.length == 0}">
+              <a  target="_blank" href="#"
+              hotkey="Ctrl+R" ng-click="repeat()">
+                {{ i18n('repeat') }}
+                <span class="pull-right">Ctrl+R</span>
+              </a>
+            </li>
+            <li ng-class="{disabled:history.length == 0}">
+              <a  target="_blank" href="#"
+              hotkey="Ctrl+Y" ng-click="clean()">
+                {{ i18n('clean') }}
+                <span class="pull-right">Ctrl+Y</span>
+              </a>
+            </li>
+            <li class="divider"></li>
+            <li>
+              <a href="#" ng-click="one = !one">
+                <div class="form-group">
+                  <label class="checkbox-inline">
+                    <input type="checkbox" id="one" value="true"
+                    ng-model="one"/>
+                    {{ i18n('one_label') }}
+                  </label>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-exclamation-sign"></i>
+            {{ i18n('help') }}
+            <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a  target="_blank"
+              href="https://chrome.google.com/webstore/detail/dckjbbhlbmojeohhjlobfllblcoannge/reviews">
+                <i class="glyphicon glyphicon-star"></i>
+                {{ i18n('reviews') }}
+              </a>
+            </li>
+            <li>
+              <a target="_blank"
+              href="https://chrome.google.com/webstore/support/dckjbbhlbmojeohhjlobfllblcoannge?#bug">
+                <i class="glyphicon glyphicon-remove-circle"></i>
+                {{ i18n('bug') }}
+              </a>
+            </li>
+            <li>
+              <a target="_blank"
+              href="https://chrome.google.com/webstore/support/dckjbbhlbmojeohhjlobfllblcoannge?#question">
+                <i class="glyphicon glyphicon-question-sign"></i>
+                {{ i18n('question') }}
+              </a>
+            </li>
+            <li>
+              <a target="_blank"
+              href="https://chrome.google.com/webstore/support/dckjbbhlbmojeohhjlobfllblcoannge?#feature">
+                <i class="glyphicon glyphicon-heart"></i>
+                {{ i18n('feature') }}
+              </a>
+            </li>
+            <li class="divider"></li>
+            <li>
+              <a target="_blank" href="#" hotkey="F1" ng-click="about()">
+                <i class="glyphicon glyphicon-exclamation-sign"></i>
+                {{ i18n('about') }}
+                <span class="pull-right">F1</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div><!-- container -->
+</header>

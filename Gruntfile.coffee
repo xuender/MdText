@@ -12,7 +12,7 @@ module.exports = (grunt)->
   grunt.loadNpmTasks('grunt-shell')
   grunt.loadNpmTasks('grunt-bumpx')
   grunt.loadNpmTasks('grunt-contrib-compress')
-  grunt.loadNpmTasks('grunt-manifest')
+  grunt.loadNpmTasks('grunt-include-replace')
 
   grunt.initConfig(
     pkg:
@@ -24,12 +24,32 @@ module.exports = (grunt)->
         part: 'patch'
       files: [ 'package.json', 'bower.json', 'src/manifest.json' ]
     copy:
+      markdown:
+        files: [
+          cwd: 'bower_components/markdown/lib/'
+          src: [
+            'markdown.js'
+          ]
+          dest: 'dist/js'
+          expand: true
+          filter: 'isFile'
+        ]
       angular:
         files: [
           cwd: 'bower_components/angular/'
           src: [
             'angular.min.js'
             'angular.min.js.map'
+          ]
+          dest: 'dist/js'
+          expand: true
+          filter: 'isFile'
+        ]
+      angularSanitize:
+        files: [
+          cwd: 'bower_components/angular-sanitize/'
+          src: [
+            'angular-sanitize.min.js'
           ]
           dest: 'dist/js'
           expand: true
@@ -146,8 +166,15 @@ module.exports = (grunt)->
           removeComments: true,
           collapseWhitespace: true
         files:
-          'dist/index.html': 'src/index.html'
-          'dist/about.html': 'src/about.html'
+          'dist/index.html': 'dist/index.html'
+          'dist/about.html': 'dist/about.html'
+    includereplace:
+      about:
+        src: 'src/about.html'
+        dest: 'dist/about.html'
+      index:
+        src: 'src/index.html'
+        dest: 'dist/index.html'
     cssmin:
       toolbox:
         expand: true
@@ -167,8 +194,9 @@ module.exports = (grunt)->
       html:
         files: [
           'src/*.html'
+          'src/htm/*.htm'
         ]
-        tasks: ['htmlmin']
+        tasks: ['includereplace']
       css:
         files: [
           'src/**/*.css'
@@ -199,13 +227,14 @@ module.exports = (grunt)->
   grunt.registerTask('dev', [
     'clean'
     'copy',
-    'htmlmin'
+    'includereplace'
     'cssmin'
     'coffee'
   ])
   grunt.registerTask('dist', [
     'dev'
     'uglify'
+    'htmlmin'
     'compress'
   ])
   grunt.registerTask('deploy', [
