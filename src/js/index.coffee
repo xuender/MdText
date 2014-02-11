@@ -10,16 +10,10 @@ $ ->
   $(window).resize(->
     doResize()
   )
-  $('ol').resize(->
-    doResize()
-  )
 
-
-doResize = (one = $('ol').is(":visible"))->
-  if one
-    $('#input').height($(document).height() - 140)
-  else
-    $('#input').height($(document).height() - 80)
+doResize = ->
+    $('#input').height($(document).height() - 135)
+    $('#preview').height($(document).height() - 135)
 
 angular.module('mdtext', [
   'ngSanitize'
@@ -27,10 +21,15 @@ angular.module('mdtext', [
   'hotkey'
 ])
 MdTextCtrl = ($scope, $modal)->
-  $scope.md = ->
-    console.info $scope.input
+  $scope.i18n = (key)->
+    chrome.i18n.getMessage(key)
+  $scope.input = ''
+  $scope.isPreview = false
+  $scope.$watch('isPreview',(n, o)->
     $scope.output = markdown.toHTML($scope.input)
-    console.info $scope.output
+  )
+  $scope.preview = ->
+    $scope.isPreview = !$scope.isPreview
   $scope.showAbout = false
   $scope.about = ->
     if $scope.showAbout
@@ -49,5 +48,6 @@ MdTextCtrl = ($scope, $modal)->
     )
     TRACKER.sendEvent('command', 'sys', 'about')
   $scope.show = true
+  doResize()
 
 MdTextCtrl.$inject = ['$scope', '$modal']

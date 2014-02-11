@@ -8,9 +8,33 @@
   <body ng-controller="MdTextCtrl" class="ng-hide" ng-show="show">
     @@include('htm/header.htm', {})
     <div class="main">
-      <textarea class="form-control" id="input"
-      ng-model="input"></textarea>
-      <div ng-bind-html="output"></div>
+      <ol class="breadcrumb">
+        <li>
+          <div class="btn-group">
+            <button class="btn btn-default">
+              新建
+            </button>
+            <button class="btn btn-default">
+              打开
+            </button>
+            <button class="btn btn-default">
+              保存
+            </button>
+          </div><!-- btn-group -->
+          <div class="btn-group">
+            <button class="btn btn-default"
+            ng-model="isPreview" btn-checkbox>
+              <i class="glyphicon glyphicon-zoom-in"></i>
+            </button>
+          </div><!-- btn-group -->
+        </li>
+      </ol>
+      <div>
+        <textarea class="form-control" id="input"
+        ng-model="input" ng-hide="isPreview"></textarea>
+      </div>
+      <div id="preview" class="form-control"
+      ng-bind-html="output" ng-show="isPreview"></div>
     </div><!-- main -->
     <script src="js/jquery.min.js"></script>
     <script src="js/angular.min.js"></script>

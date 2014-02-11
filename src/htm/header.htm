@@ -9,8 +9,24 @@
           </a>
           <ul class="dropdown-menu">
             <li>
-              <a href="#" ng-click="md()">
+              <a href="#">
               测试
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          编辑
+            <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="#" ng-click="preview()" hotkey="Ctrl+E">
+              <input type="checkbox" ng-model="isPreview"/>
+              <i class="glyphicon glyphicon-zoom-in"></i>
+              预览
+              <span class="pull-right">Ctrl+E</span>
               </a>
             </li>
           </ul>
