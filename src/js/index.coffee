@@ -23,10 +23,11 @@ angular.module('mdtext', [
 MdTextCtrl = ($scope, $modal)->
   $scope.i18n = (key)->
     chrome.i18n.getMessage(key)
-  $scope.input = ''
-  $scope.isLivePreview = false
-  $scope.isEdit = true
-  $scope.isPreview = false
+  $scope.new = ->
+    $scope.input = ''
+    $scope.isLivePreview = false
+    $scope.isEdit = true
+    $scope.isPreview = false
   $scope.$watch('input',(n, o)->
     $scope.output = markdown.toHTML($scope.input)
   )
@@ -61,6 +62,7 @@ MdTextCtrl = ($scope, $modal)->
     )
     TRACKER.sendEvent('command', 'sys', 'about')
   $scope.show = true
+  $scope.new()
   doResize()
 
 MdTextCtrl.$inject = ['$scope', '$modal']
