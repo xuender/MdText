@@ -23,12 +23,32 @@ angular.module('mdtext', [
 MdTextCtrl = ($scope, $modal)->
   $scope.i18n = (key)->
     chrome.i18n.getMessage(key)
+  $scope.open = ->
+    chrome.fileSystem.chooseEntry({
+      type: 'openFile'
+      accepts: [
+        {
+          description: 'Markdown(*.md)'
+          mimeTypes: ['text/*']
+          extensions: ['md']
+        }
+      ]
+    }, (readOnlyEntry)->
+      readOnlyEntry.file((file)->
+        reader = new FileReader()
+        #reader.onerror = errorHandler
+        reader.onloadend = (e)->
+          $scope.input = e.target.result
+          $scope.$apply()
+        reader.readAsText(file)
+      )
+    )
   $scope.new = ->
     $scope.input = ''
     $scope.isLivePreview = false
     $scope.isEdit = true
     $scope.isPreview = false
-  $scope.$watch('input',(n, o)->
+  $scope.$watch('input', (n, o)->
     $scope.output = markdown.toHTML($scope.input)
   )
   $scope.$watch('isPreview', (n, o)->
@@ -43,6 +63,7 @@ MdTextCtrl = ($scope, $modal)->
     $scope.isPreview = !$scope.isPreview
   $scope.livePreview = ->
     $scope.isLivePreview = !$scope.isLivePreview
+    $scope.isEdit = true
     $scope.isPreview = $scope.isLivePreview
   $scope.showAbout = false
   $scope.about = ->

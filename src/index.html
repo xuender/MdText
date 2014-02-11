@@ -14,8 +14,8 @@
             <button class="btn btn-default" ng-click="new()">
               <i class="glyphicon glyphicon-file"></i>
             </button>
-            <button class="btn btn-default">
-              打开
+            <button class="btn btn-default" ng-click="open()">
+              <i class="glyphicon glyphicon-folder-open"></i>
             </button>
             <button class="btn btn-default">
               保存
@@ -37,7 +37,7 @@
         </div>
         <div ng-show="isPreview"
         ng-class="{'col-xs-6':isLivePreview, 'col-xs-12':!isLivePreview}">
-          <div id="preview" class="form-control"
+          <div id="preview" class="preview form-control"
           ng-bind-html="output"></div>
         </div>
       </div>

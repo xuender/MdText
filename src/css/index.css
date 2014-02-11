@@ -33,3 +33,6 @@ textarea.form-control {
   margin-top: -20px;
   clear: both;
 }
+.preview {
+  overflow:auto;
+}

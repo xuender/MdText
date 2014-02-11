@@ -15,7 +15,8 @@
   },
   "permissions": [
     "https://www.google-analytics.com/*",
-    "storage"
+    "storage",
+    "fileSystem"
   ],
   "icons": {
     "16": "img/16.png",
