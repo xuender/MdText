@@ -29,12 +29,18 @@
           </div><!-- btn-group -->
         </li>
       </ol>
-      <div>
-        <textarea class="form-control" id="input"
-        ng-model="input" ng-hide="isPreview"></textarea>
+      <div class="row">
+        <div ng-show="isEdit"
+        ng-class="{'col-xs-6':isLivePreview, 'col-xs-12':!isLivePreview}">
+          <textarea class="form-control" id="input"
+          ng-model="input"></textarea>
+        </div>
+        <div ng-show="isPreview"
+        ng-class="{'col-xs-6':isLivePreview, 'col-xs-12':!isLivePreview}">
+          <div id="preview" class="form-control"
+          ng-bind-html="output"></div>
+        </div>
       </div>
-      <div id="preview" class="form-control"
-      ng-bind-html="output" ng-show="isPreview"></div>
     </div><!-- main -->
     <script src="js/jquery.min.js"></script>
     <script src="js/angular.min.js"></script>

@@ -24,12 +24,25 @@ MdTextCtrl = ($scope, $modal)->
   $scope.i18n = (key)->
     chrome.i18n.getMessage(key)
   $scope.input = ''
+  $scope.isLivePreview = false
+  $scope.isEdit = true
   $scope.isPreview = false
-  $scope.$watch('isPreview',(n, o)->
+  $scope.$watch('input',(n, o)->
     $scope.output = markdown.toHTML($scope.input)
+  )
+  $scope.$watch('isPreview', (n, o)->
+    if !n
+      $scope.isLivePreview = n
+    if $scope.isLivePreview
+      $scope.isEdit = true
+    else
+      $scope.isEdit = !n
   )
   $scope.preview = ->
     $scope.isPreview = !$scope.isPreview
+  $scope.livePreview = ->
+    $scope.isLivePreview = !$scope.isLivePreview
+    $scope.isPreview = $scope.isLivePreview
   $scope.showAbout = false
   $scope.about = ->
     if $scope.showAbout

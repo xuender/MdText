@@ -22,11 +22,18 @@
           </a>
           <ul class="dropdown-menu">
             <li>
+              <a href="#" ng-click="livePreview()" hotkey="Ctrl+L">
+                <input type="checkbox" ng-model="isLivePreview"/>
+                实时预览
+                <span class="pull-right">Ctrl+L</span>
+              </a>
+            </li>
+            <li>
               <a href="#" ng-click="preview()" hotkey="Ctrl+E">
-              <input type="checkbox" ng-model="isPreview"/>
-              <i class="glyphicon glyphicon-zoom-in"></i>
-              预览
-              <span class="pull-right">Ctrl+E</span>
+                <input type="checkbox" ng-model="isPreview"/>
+                <i class="glyphicon glyphicon-zoom-in"></i>
+                预览
+                <span class="pull-right">Ctrl+E</span>
               </a>
             </li>
           </ul>
