@@ -24,6 +24,26 @@ module.exports = (grunt)->
         part: 'patch'
       files: [ 'package.json', 'bower.json', 'src/manifest.json' ]
     copy:
+      dialogJs:
+        files: [
+          cwd: 'bower_components/angular-dialog-service/'
+          src: [
+            'dialogs.min.js'
+          ]
+          dest: 'dist/js'
+          expand: true
+          filter: 'isFile'
+        ]
+      dialogCss:
+        files: [
+          cwd: 'bower_components/angular-dialog-service/'
+          src: [
+            'dialogs.min.css'
+          ]
+          dest: 'dist/css'
+          expand: true
+          filter: 'isFile'
+        ]
       markdown:
         files: [
           cwd: 'bower_components/markdown/lib/'
@@ -168,7 +188,6 @@ module.exports = (grunt)->
         files:
           'dist/index.html': 'dist/index.html'
           'dist/about.html': 'dist/about.html'
-          'dist/alert.html': 'dist/alert.html'
     includereplace:
       about:
         src: 'src/about.html'
@@ -176,9 +195,6 @@ module.exports = (grunt)->
       index:
         src: 'src/index.html'
         dest: 'dist/index.html'
-      alert:
-        src: 'src/alert.html'
-        dest: 'dist/alert.html'
     cssmin:
       toolbox:
         expand: true

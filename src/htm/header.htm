@@ -1,149 +1,181 @@
-<header class="navbar navbar-default navbar-fixed-top" role="banner">
-  <div class="container">
-    <nav class="collapse navbar-collapse" role="navigation">
-      <ul class="nav navbar-nav">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            文件
-            <b class="caret"></b>
-          </a>
-          <ul class="dropdown-menu">
-            <li>
-              <a href="#" ng-click="new()" hotkey="Ctrl+n">
-                <i class="glyphicon glyphicon-file"></i>
-                新建
-                <span class="pull-right">Ctrl+N</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" ng-click="open()" hotkey="Ctrl+o">
-                <i class="glyphicon glyphicon-folder-open"></i>
-                打开
-                <span class="pull-right">Ctrl+O</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" ng-click="save()" hotkey="Ctrl+s">
-                <i class="glyphicon glyphicon-floppy-disk"></i>
-                保存
-                <span class="pull-right">Ctrl+S</span>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-          编辑
-            <b class="caret"></b>
-          </a>
-          <ul class="dropdown-menu">
-            <li>
-              <a href="#" ng-click="livePreview()" hotkey="Ctrl+L">
-                <input type="checkbox" ng-model="isLivePreview"/>
-                实时预览
-                <span class="pull-right">Ctrl+L</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" ng-click="preview()" hotkey="Ctrl+E">
-                <input type="checkbox" ng-model="isPreview"/>
-                <i class="glyphicon glyphicon-zoom-in"></i>
-                预览
-                <span class="pull-right">Ctrl+E</span>
-              </a>
-            </li>
-          </ul>
-        </li>
-      </ul>
-      <ul class="nav navbar-nav pull-right">
-        <li>
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <i class="glyphicon glyphicon-wrench"></i>
-            {{ i18n('settings') }}
-            <b class="caret"></b>
-          </a>
-          <ul class="dropdown-menu">
-            <li ng-class="{disabled:history.length == 0}">
-              <a  target="_blank" href="#"
-              hotkey="Ctrl+U" ng-click="undo()">
-                {{ i18n('undo') }}
-                <span class="pull-right">Ctrl+U</span>
-              </a>
-            </li>
-            <li ng-class="{disabled:history.length == 0}">
-              <a  target="_blank" href="#"
-              hotkey="Ctrl+R" ng-click="repeat()">
-                {{ i18n('repeat') }}
-                <span class="pull-right">Ctrl+R</span>
-              </a>
-            </li>
-            <li ng-class="{disabled:history.length == 0}">
-              <a  target="_blank" href="#"
-              hotkey="Ctrl+Y" ng-click="clean()">
-                {{ i18n('clean') }}
-                <span class="pull-right">Ctrl+Y</span>
-              </a>
-            </li>
-            <li class="divider"></li>
-            <li>
-              <a href="#" ng-click="one = !one">
-                <div class="form-group">
-                  <label class="checkbox-inline">
-                    <input type="checkbox" id="one" value="true"
-                    ng-model="one"/>
-                    {{ i18n('one_label') }}
-                  </label>
-                </div>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <i class="glyphicon glyphicon-exclamation-sign"></i>
-            {{ i18n('help') }}
-            <b class="caret"></b>
-          </a>
-          <ul class="dropdown-menu">
-            <li>
-              <a  target="_blank"
-              href="https://chrome.google.com/webstore/detail/dckjbbhlbmojeohhjlobfllblcoannge/reviews">
-                <i class="glyphicon glyphicon-star"></i>
-                {{ i18n('reviews') }}
-              </a>
-            </li>
-            <li>
-              <a target="_blank"
-              href="https://chrome.google.com/webstore/support/dckjbbhlbmojeohhjlobfllblcoannge?#bug">
-                <i class="glyphicon glyphicon-remove-circle"></i>
-                {{ i18n('bug') }}
-              </a>
-            </li>
-            <li>
-              <a target="_blank"
-              href="https://chrome.google.com/webstore/support/dckjbbhlbmojeohhjlobfllblcoannge?#question">
-                <i class="glyphicon glyphicon-question-sign"></i>
-                {{ i18n('question') }}
-              </a>
-            </li>
-            <li>
-              <a target="_blank"
-              href="https://chrome.google.com/webstore/support/dckjbbhlbmojeohhjlobfllblcoannge?#feature">
-                <i class="glyphicon glyphicon-heart"></i>
-                {{ i18n('feature') }}
-              </a>
-            </li>
-            <li class="divider"></li>
-            <li>
-              <a target="_blank" href="#" hotkey="F1" ng-click="about()">
-                <i class="glyphicon glyphicon-exclamation-sign"></i>
-                {{ i18n('about') }}
-                <span class="pull-right">F1</span>
-              </a>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
-  </div><!-- container -->
+<div id="title">
+  <img src="img/16.png">
+    MdText
+    <button class="close" aria-hidden="true"
+  ng-click="close()">
+    &times;
+  </button>
+</div>
+<header class="navbar navbar-default" role="banner">
+  <nav class="collapse navbar-collapse" role="navigation">
+    <ul class="nav navbar-nav">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          文件
+          <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="#" ng-click="new()" hotkey="Ctrl+n">
+              <i class="glyphicon glyphicon-file"></i>
+              新建
+              <span class="pull-right">Ctrl+N</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" ng-click="open()" hotkey="Ctrl+o">
+              <i class="glyphicon glyphicon-folder-open"></i>
+              打开
+              <span class="pull-right">Ctrl+O</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" ng-click="save()" hotkey="Ctrl+s">
+              <i class="glyphicon glyphicon-floppy-disk"></i>
+              保存
+              <span class="pull-right">Ctrl+S</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        编辑
+          <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="#" ng-click="livePreview()" hotkey="Ctrl+L">
+              <input type="checkbox" ng-model="isLivePreview"/>
+              实时预览
+              <span class="pull-right">Ctrl+L</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" ng-click="preview()" hotkey="Ctrl+E">
+              <input type="checkbox" ng-model="isPreview"/>
+              <i class="glyphicon glyphicon-zoom-in"></i>
+              预览
+              <span class="pull-right">Ctrl+E</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav pull-right">
+      <li>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <i class="glyphicon glyphicon-wrench"></i>
+          {{ i18n('settings') }}
+          <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li ng-class="{disabled:history.length == 0}">
+            <a  target="_blank" href="#"
+            hotkey="Ctrl+U" ng-click="undo()">
+              {{ i18n('undo') }}
+              <span class="pull-right">Ctrl+U</span>
+            </a>
+          </li>
+          <li ng-class="{disabled:history.length == 0}">
+            <a  target="_blank" href="#"
+            hotkey="Ctrl+R" ng-click="repeat()">
+              {{ i18n('repeat') }}
+              <span class="pull-right">Ctrl+R</span>
+            </a>
+          </li>
+          <li ng-class="{disabled:history.length == 0}">
+            <a  target="_blank" href="#"
+            hotkey="Ctrl+Y" ng-click="clean()">
+              {{ i18n('clean') }}
+              <span class="pull-right">Ctrl+Y</span>
+            </a>
+          </li>
+          <li class="divider"></li>
+          <li>
+            <a href="#" ng-click="one = !one">
+              <div class="form-group">
+                <label class="checkbox-inline">
+                  <input type="checkbox" id="one" value="true"
+                  ng-model="one"/>
+                  {{ i18n('one_label') }}
+                </label>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <i class="glyphicon glyphicon-exclamation-sign"></i>
+          {{ i18n('help') }}
+          <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a  target="_blank"
+            href="https://chrome.google.com/webstore/detail/dckjbbhlbmojeohhjlobfllblcoannge/reviews">
+              <i class="glyphicon glyphicon-star"></i>
+              {{ i18n('reviews') }}
+            </a>
+          </li>
+          <li>
+            <a target="_blank"
+            href="https://chrome.google.com/webstore/support/dckjbbhlbmojeohhjlobfllblcoannge?#bug">
+              <i class="glyphicon glyphicon-remove-circle"></i>
+              {{ i18n('bug') }}
+            </a>
+          </li>
+          <li>
+            <a target="_blank"
+            href="https://chrome.google.com/webstore/support/dckjbbhlbmojeohhjlobfllblcoannge?#question">
+              <i class="glyphicon glyphicon-question-sign"></i>
+              {{ i18n('question') }}
+            </a>
+          </li>
+          <li>
+            <a target="_blank"
+            href="https://chrome.google.com/webstore/support/dckjbbhlbmojeohhjlobfllblcoannge?#feature">
+              <i class="glyphicon glyphicon-heart"></i>
+              {{ i18n('feature') }}
+            </a>
+          </li>
+          <li class="divider"></li>
+          <li>
+            <a target="_blank" href="#" hotkey="F1" ng-click="about()">
+              <i class="glyphicon glyphicon-exclamation-sign"></i>
+              {{ i18n('about') }}
+              <span class="pull-right">F1</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+      <div class="btn-toolbar" role="toolbar">
+        <div class="btn-group">
+          <button class="btn btn-default"
+          ng-click="new()">
+            <i class="glyphicon glyphicon-file"></i>
+          </button>
+          <button class="btn btn-default"
+          ng-click="open()">
+            <i class="glyphicon glyphicon-folder-open"></i>
+          </button>
+          <button class="btn btn-default"
+          ng-click="save()">
+            <i class="glyphicon glyphicon-floppy-disk"></i>
+          </button>
+        </div><!-- btn-group -->
+        <div class="btn-group">
+          <button class="btn btn-default"
+          ng-model="isPreview" btn-checkbox>
+            <i class="glyphicon glyphicon-zoom-in"></i>
+          </button>
+          <button class="btn btn-default"
+          ng-click="alert('xx', 'ff')">
+          测试
+          </button>
+        </div><!-- btn-group -->
+      </div><!-- btn-toolbar -->
 </header>

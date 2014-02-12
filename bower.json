@@ -27,6 +27,7 @@
     "angular": "1.2.11",
     "angular-mocks": "1.2.11",
     "angular-sanitize": "1.2.11",
-    "angular-bootstrap": "~0.10.0"
+    "angular-bootstrap": "~0.10.0",
+    "angular-dialog-service": "~3.1.0"
   }
 }

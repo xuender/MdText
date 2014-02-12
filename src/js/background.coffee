@@ -6,9 +6,10 @@ Distributed under terms of the MIT license.
 ###
 chrome.app.runtime.onLaunched.addListener(->
   chrome.app.window.create('index.html',
+    frame: "none"
     bounds:
       'width': 800
-      'height': 600
+      'height': 550
     id: 'MdTest'
     minWidth: 770
     minHeight: 500

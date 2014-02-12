@@ -2,40 +2,13 @@
 <html ng-app="mdtext" ng-csp>
   <head>
     <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/dialogs.min.css" rel="stylesheet"/>
     <link href="css/index.min.css" rel="stylesheet"/>
     <title>MdText</title>
   </head>
   <body ng-controller="MdTextCtrl" class="ng-hide" ng-show="show">
     @@include('htm/header.htm', {})
-    <div class="main">
-      <ol class="breadcrumb">
-        <li>
-          <div class="btn-group">
-            <button class="btn btn-default"
-            ng-click="new()">
-              <i class="glyphicon glyphicon-file"></i>
-            </button>
-            <button class="btn btn-default"
-            ng-click="open()">
-              <i class="glyphicon glyphicon-folder-open"></i>
-            </button>
-            <button class="btn btn-default"
-            ng-click="save()">
-              <i class="glyphicon glyphicon-floppy-disk"></i>
-            </button>
-          </div><!-- btn-group -->
-          <div class="btn-group">
-            <button class="btn btn-default"
-            ng-model="isPreview" btn-checkbox>
-              <i class="glyphicon glyphicon-zoom-in"></i>
-            </button>
-            <button class="btn btn-default"
-            ng-click="alert('xx', 'ff')">
-            测试
-            </button>
-          </div><!-- btn-group -->
-        </li>
-      </ol>
+    <div class="main" id="main">
       <div class="row">
         <div ng-show="isEdit"
         ng-class="{'col-xs-6':isLivePreview, 'col-xs-12':!isLivePreview}">
@@ -55,6 +28,7 @@
     <script src="js/hotkey.min.js"></script>
     <script src="js/markdown.js"></script>
     <script src="js/ui-bootstrap-tpls.min.js"></script>
+    <script src="js/dialogs.min.js"></script>
     <script src="js/google-analytics-bundle.js"></script>
     <script src="js/main.min.js"></script>
   </body>

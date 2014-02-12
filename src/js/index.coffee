@@ -10,14 +10,27 @@ $ ->
   $(window).resize(->
     doResize()
   )
+  window.onfocus = ->
+    console.log("focus")
+    focusTitlebars(true)
+
+  window.onblur = ->
+    console.log("blur")
+    focusTitlebars(false)
+
+focusTitlebars = (focus)->
+  bg_color = if focus then "#3a3d3d" else "#7a7c7c"
+  titlebar = document.getElementById("title")
+  titlebar.style.backgroundColor = bg_color
 
 doResize = ->
-    $('#input').height($(document).height() - 135)
-    $('#preview').height($(document).height() - 135)
+    $('#input').height($(document).height() - 140)
+    $('#preview').height($(document).height() - 140)
 
 angular.module('mdtext', [
   'ngSanitize'
   'ui.bootstrap'
+  'dialogs'
   'hotkey'
 ])
 CHOOSE_ACCEPTS = [
@@ -27,14 +40,22 @@ CHOOSE_ACCEPTS = [
     extensions: ['md']
   }
 ]
-MdTextCtrl = ($scope, $modal)->
+
+MdTextCtrl = ($scope, $modal, $dialogs)->
+  $scope.close = ->
+    dlg = $dialogs.confirm('系统信息','是否退出?')
+    dlg.result.then((btn)->
+      window.close()
+    ,(btn)->
+      console.info 'no'
+    )
   $scope.i18n = (key)->
     chrome.i18n.getMessage(key)
   $scope.doSave = ->
     $scope.fileEntry.createWriter((writer)->
       writer.onerror  = ->
         $scope.fileEntry = null
-        $scope.alert('保存错误', '文件无法保存.')
+        $dialogs.error('保存错误', '文件无法保存.')
       writer.onwriteend = ->
         console.info 'save'
       writer.write(new Blob([$scope.input]))
@@ -60,7 +81,7 @@ MdTextCtrl = ($scope, $modal)->
         reader = new FileReader()
         reader.onerror = ->
           $scope.fileEntry = null
-          $scope.alert('读取错误', '文件无法打开.')
+          $dialogs.error('读取错误', '文件无法打开.')
         reader.onloadend = (e)->
           $scope.input = e.target.result
           $scope.$apply()
@@ -90,18 +111,6 @@ MdTextCtrl = ($scope, $modal)->
     $scope.isLivePreview = !$scope.isLivePreview
     $scope.isEdit = true
     $scope.isPreview = $scope.isLivePreview
-  $scope.alert = (title, message)->
-    d = $modal.open
-      backdrop: true
-      keyboard: true
-      backdropClick: true
-      templateUrl: 'alert.html'
-      controller: 'AlertCtrl'
-      resolve:
-        title: ->
-          title
-        message: ->
-          message
   $scope.showAbout = false
   $scope.about = ->
     if $scope.showAbout
@@ -123,4 +132,4 @@ MdTextCtrl = ($scope, $modal)->
   $scope.new()
   doResize()
 
-MdTextCtrl.$inject = ['$scope', '$modal']
+MdTextCtrl.$inject = ['$scope', '$modal', '$dialogs']
