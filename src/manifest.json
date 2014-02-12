@@ -16,7 +16,11 @@
   "permissions": [
     "https://www.google-analytics.com/*",
     "storage",
-    "fileSystem"
+    {
+      "fileSystem": [
+        "write"
+      ]
+    }
   ],
   "icons": {
     "16": "img/16.png",

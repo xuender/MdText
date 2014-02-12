@@ -20,29 +20,54 @@ angular.module('mdtext', [
   'ui.bootstrap'
   'hotkey'
 ])
+CHOOSE_ACCEPTS = [
+  {
+    description: 'Markdown(*.md)'
+    mimeTypes: ['text/plain']
+    extensions: ['md']
+  }
+]
 MdTextCtrl = ($scope, $modal)->
   $scope.i18n = (key)->
     chrome.i18n.getMessage(key)
+  $scope.doSave = ->
+    $scope.fileEntry.createWriter((writer)->
+      writer.onerror  = ->
+        $scope.fileEntry = null
+        $scope.alert('保存错误', '文件无法保存.')
+      writer.onwriteend = ->
+        console.info 'save'
+      writer.write(new Blob([$scope.input]))
+    )
+  $scope.save = ->
+    if $scope.fileEntry
+        $scope.doSave()
+    else
+      chrome.fileSystem.chooseEntry({
+        type: 'saveFile'
+        accepts: CHOOSE_ACCEPTS
+      }, (fileEntry)->
+        $scope.fileEntry = fileEntry
+        $scope.doSave()
+      )
   $scope.open = ->
     chrome.fileSystem.chooseEntry({
-      type: 'openFile'
-      accepts: [
-        {
-          description: 'Markdown(*.md)'
-          mimeTypes: ['text/*']
-          extensions: ['md']
-        }
-      ]
-    }, (readOnlyEntry)->
-      readOnlyEntry.file((file)->
+      type: 'openWritableFile'
+      accepts: CHOOSE_ACCEPTS
+    }, (fileEntry)->
+      $scope.fileEntry = fileEntry
+      fileEntry.file((file)->
         reader = new FileReader()
-        #reader.onerror = errorHandler
+        reader.onerror = ->
+          $scope.fileEntry = null
+          $scope.alert('读取错误', '文件无法打开.')
         reader.onloadend = (e)->
           $scope.input = e.target.result
           $scope.$apply()
         reader.readAsText(file)
       )
     )
+  $scope.input = ''
   $scope.new = ->
     $scope.input = ''
     $scope.isLivePreview = false
@@ -65,6 +90,18 @@ MdTextCtrl = ($scope, $modal)->
     $scope.isLivePreview = !$scope.isLivePreview
     $scope.isEdit = true
     $scope.isPreview = $scope.isLivePreview
+  $scope.alert = (title, message)->
+    d = $modal.open
+      backdrop: true
+      keyboard: true
+      backdropClick: true
+      templateUrl: 'alert.html'
+      controller: 'AlertCtrl'
+      resolve:
+        title: ->
+          title
+        message: ->
+          message
   $scope.showAbout = false
   $scope.about = ->
     if $scope.showAbout

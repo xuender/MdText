@@ -11,20 +11,27 @@
       <ol class="breadcrumb">
         <li>
           <div class="btn-group">
-            <button class="btn btn-default" ng-click="new()">
+            <button class="btn btn-default"
+            ng-click="new()">
               <i class="glyphicon glyphicon-file"></i>
             </button>
-            <button class="btn btn-default" ng-click="open()">
+            <button class="btn btn-default"
+            ng-click="open()">
               <i class="glyphicon glyphicon-folder-open"></i>
             </button>
-            <button class="btn btn-default">
-              保存
+            <button class="btn btn-default"
+            ng-click="save()">
+              <i class="glyphicon glyphicon-floppy-disk"></i>
             </button>
           </div><!-- btn-group -->
           <div class="btn-group">
             <button class="btn btn-default"
             ng-model="isPreview" btn-checkbox>
               <i class="glyphicon glyphicon-zoom-in"></i>
+            </button>
+            <button class="btn btn-default"
+            ng-click="alert('xx', 'ff')">
+            测试
             </button>
           </div><!-- btn-group -->
         </li>

@@ -168,6 +168,7 @@ module.exports = (grunt)->
         files:
           'dist/index.html': 'dist/index.html'
           'dist/about.html': 'dist/about.html'
+          'dist/alert.html': 'dist/alert.html'
     includereplace:
       about:
         src: 'src/about.html'
@@ -175,6 +176,9 @@ module.exports = (grunt)->
       index:
         src: 'src/index.html'
         dest: 'dist/index.html'
+      alert:
+        src: 'src/alert.html'
+        dest: 'dist/alert.html'
     cssmin:
       toolbox:
         expand: true
