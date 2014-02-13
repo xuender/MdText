@@ -35,6 +35,7 @@ textarea.form-control {
   clear: both;
 }
 .preview {
+  margin-top: 5px;
   overflow:auto;
 }
 .navbar {
