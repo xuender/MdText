@@ -48,6 +48,7 @@ MdTextCtrl = ($scope, $modal, $dialogs)->
       window.close()
     ,(btn)->
       console.info 'no'
+      $('#input').focus()
     )
   $scope.i18n = (key)->
     chrome.i18n.getMessage(key)
@@ -57,7 +58,7 @@ MdTextCtrl = ($scope, $modal, $dialogs)->
         $scope.fileEntry = null
         $dialogs.error('保存错误', '文件无法保存.')
       writer.onwriteend = ->
-        console.info 'save'
+        $('#input').focus()
       writer.write(new Blob([$scope.input]))
     )
   $scope.save = ->
@@ -88,12 +89,14 @@ MdTextCtrl = ($scope, $modal, $dialogs)->
         reader.readAsText(file)
       )
     )
+    $('#input').focus()
   $scope.input = ''
   $scope.new = ->
     $scope.input = ''
     $scope.isLivePreview = false
     $scope.isEdit = true
     $scope.isPreview = false
+    $('#input').focus()
   $scope.$watch('input', (n, o)->
     $scope.output = markdown.toHTML($scope.input)
   )
@@ -104,6 +107,7 @@ MdTextCtrl = ($scope, $modal, $dialogs)->
       $scope.isEdit = true
     else
       $scope.isEdit = !n
+    $('#input').focus()
   )
   $scope.preview = ->
     $scope.isPreview = !$scope.isPreview
@@ -127,9 +131,11 @@ MdTextCtrl = ($scope, $modal, $dialogs)->
     ,->
       $scope.showAbout = false
     )
+    $('#input').focus()
     TRACKER.sendEvent('command', 'sys', 'about')
   $scope.show = true
   $scope.new()
   doResize()
+  $('#input').focus()
 
 MdTextCtrl.$inject = ['$scope', '$modal', '$dialogs']
