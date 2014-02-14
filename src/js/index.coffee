@@ -111,6 +111,7 @@ MdTextCtrl = ($scope, $modal, $dialogs)->
   )
   $scope.preview = ->
     $scope.isPreview = !$scope.isPreview
+    $('#input').focus()
   $scope.livePreview = ->
     $scope.isLivePreview = !$scope.isLivePreview
     $scope.isEdit = true
