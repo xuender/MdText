@@ -45,6 +45,7 @@ MdTextCtrl = ($scope, $modal, $dialogs)->
   $scope.close = ->
     dlg = $dialogs.confirm($scope.i18n('prompted'), $scope.i18n('dyq'))
     dlg.result.then((btn)->
+      TRACKER.sendEvent('command', 'sys', 'close')
       window.close()
     ,(btn)->
       console.info 'no'
@@ -72,6 +73,7 @@ MdTextCtrl = ($scope, $modal, $dialogs)->
         $scope.fileEntry = fileEntry
         $scope.doSave()
       )
+    TRACKER.sendEvent('command', 'sys', 'save')
   $scope.open = ->
     chrome.fileSystem.chooseEntry({
       type: 'openWritableFile'
@@ -89,6 +91,7 @@ MdTextCtrl = ($scope, $modal, $dialogs)->
         reader.readAsText(file)
       )
     )
+    TRACKER.sendEvent('command', 'sys', 'open')
     $('#input').focus()
   $scope.input = ''
   $scope.new = ->
@@ -96,6 +99,7 @@ MdTextCtrl = ($scope, $modal, $dialogs)->
     $scope.isLivePreview = false
     $scope.isEdit = true
     $scope.isPreview = false
+    TRACKER.sendEvent('command', 'sys', 'new')
     $('#input').focus()
   $scope.$watch('input', (n, o)->
     $scope.output = markdown.toHTML($scope.input)
@@ -111,10 +115,12 @@ MdTextCtrl = ($scope, $modal, $dialogs)->
   )
   $scope.preview = ->
     $scope.isPreview = !$scope.isPreview
+    TRACKER.sendEvent('command', 'sys', 'preview')
   $scope.livePreview = ->
     $scope.isLivePreview = !$scope.isLivePreview
     $scope.isEdit = true
     $scope.isPreview = $scope.isLivePreview
+    TRACKER.sendEvent('command', 'sys', 'livePreview')
   $scope.showAbout = false
   $scope.about = ->
     if $scope.showAbout

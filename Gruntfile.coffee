@@ -160,7 +160,7 @@ module.exports = (grunt)->
       main:
         files:
           'dist/js/main.min.js': [
-            'src/js/toolbox.coffee'
+            'src/js/analytics.coffee'
             'src/js/about.coffee'
             'src/js/index.coffee'
           ]
@@ -196,7 +196,7 @@ module.exports = (grunt)->
         src: 'src/index.html'
         dest: 'dist/index.html'
     cssmin:
-      toolbox:
+      main:
         expand: true
         cwd: 'src/css/'
         src: ['*.css', '!*.min.css'],
@@ -230,7 +230,7 @@ module.exports = (grunt)->
     compress:
       google:
         options:
-          archive: 'dist/toolbox.zip'
+          archive: 'dist/mdText.zip'
         files: [
           {expand: true, cwd: 'dist', src: '**/*', dest: '/'}
         ]
