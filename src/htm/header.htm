@@ -11,28 +11,28 @@
     <ul class="nav navbar-nav">
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-          文件
+          {{ i18n('file') }}
           <b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
           <li>
             <a href="#" ng-click="new()" hotkey="Ctrl+n">
               <i class="glyphicon glyphicon-file"></i>
-              新建
+              {{ i18n('new') }}
               <span class="pull-right">Ctrl+N</span>
             </a>
           </li>
           <li>
             <a href="#" ng-click="open()" hotkey="Ctrl+o">
               <i class="glyphicon glyphicon-folder-open"></i>
-              打开
+              {{ i18n('open') }}
               <span class="pull-right">Ctrl+O</span>
             </a>
           </li>
           <li>
             <a href="#" ng-click="save()" hotkey="Ctrl+s">
               <i class="glyphicon glyphicon-floppy-disk"></i>
-              保存
+              {{ i18n('save') }}
               <span class="pull-right">Ctrl+S</span>
             </a>
           </li>
@@ -40,7 +40,7 @@
           <li>
             <a href="#" ng-click="close()" hotkey="Ctrl+q">
               <i class="glyphicon glyphicon-log-out"></i>
-              退出
+              {{ i18n('quit') }}
               <span class="pull-right">Ctrl+Q</span>
             </a>
           </li>
@@ -48,14 +48,14 @@
       </li>
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-        编辑
+          {{ i18n('edit') }}
           <b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
           <li>
             <a href="#" ng-click="livePreview()" hotkey="Ctrl+L">
               <input type="checkbox" ng-model="isLivePreview"/>
-              实时预览
+              {{ i18n('live_preview') }}
               <span class="pull-right">Ctrl+L</span>
             </a>
           </li>
@@ -63,7 +63,7 @@
             <a href="#" ng-click="preview()" hotkey="Ctrl+E">
               <input type="checkbox" ng-model="isPreview"/>
               <i class="glyphicon glyphicon-zoom-in"></i>
-              预览
+              {{ i18n('preview') }}
               <span class="pull-right">Ctrl+E</span>
             </a>
           </li>
@@ -71,48 +71,6 @@
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li>
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-          <i class="glyphicon glyphicon-wrench"></i>
-          {{ i18n('settings') }}
-          <b class="caret"></b>
-        </a>
-        <ul class="dropdown-menu">
-          <li ng-class="{disabled:history.length == 0}">
-            <a  target="_blank" href="#"
-            hotkey="Ctrl+U" ng-click="undo()">
-              {{ i18n('undo') }}
-              <span class="pull-right">Ctrl+U</span>
-            </a>
-          </li>
-          <li ng-class="{disabled:history.length == 0}">
-            <a  target="_blank" href="#"
-            hotkey="Ctrl+R" ng-click="repeat()">
-              {{ i18n('repeat') }}
-              <span class="pull-right">Ctrl+R</span>
-            </a>
-          </li>
-          <li ng-class="{disabled:history.length == 0}">
-            <a  target="_blank" href="#"
-            hotkey="Ctrl+Y" ng-click="clean()">
-              {{ i18n('clean') }}
-              <span class="pull-right">Ctrl+Y</span>
-            </a>
-          </li>
-          <li class="divider"></li>
-          <li>
-            <a href="#" ng-click="one = !one">
-              <div class="form-group">
-                <label class="checkbox-inline">
-                  <input type="checkbox" id="one" value="true"
-                  ng-model="one"/>
-                  {{ i18n('one_label') }}
-                </label>
-              </div>
-            </a>
-          </li>
-        </ul>
-      </li>
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
           <i class="glyphicon glyphicon-exclamation-sign"></i>

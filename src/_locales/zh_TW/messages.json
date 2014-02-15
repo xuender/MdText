@@ -1,0 +1,71 @@
+{
+   "about":{
+    "message": "關於"
+  },
+   "bug":{
+    "message": "錯誤"
+  },
+   "close":{
+    "message": "關閉"
+  },
+   "coffee":{
+    "message": "使用比特幣給作者買杯飲料"
+  },
+   "dyq":{
+    "message": "是否退出？"
+  },
+   "edit":{
+    "message": "編輯"
+  },
+   "feature":{
+    "message": "功能建議"
+  },
+   "file":{
+    "message": "文件"
+  },
+   "help":{
+    "message": "幫助"
+  },
+   "live_preview":{
+    "message": "實時預覽"
+  },
+   "mt_description":{
+    "message": "簡單的Markdown格式文本編輯器，支持實時預覽。"
+  },
+   "mt_name":{
+    "message": "MdText 編輯器"
+  },
+   "mt_title":{
+    "message": "MdText - Markdown 文本編輯器"
+  },
+   "new":{
+    "message": "新建"
+  },
+   "open":{
+    "message": "打開"
+  },
+   "open_error":{
+    "message": "異常！文件無法讀取。"
+  },
+   "preview":{
+    "message": "預覽"
+  },
+   "prompted":{
+    "message": "系統提示"
+  },
+   "question":{
+    "message": "問題"
+  },
+   "quit":{
+    "message": "退出"
+  },
+   "reviews":{
+    "message": "評論"
+  },
+   "save":{
+    "message": "保存"
+  },
+   "save_error":{
+    "message": "異常！文件無法保存"
+  }
+}

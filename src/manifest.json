@@ -1,7 +1,7 @@
 {
-    "name": "__MSG_name__",
+    "name": "__MSG_mt_name__",
     "version": "1.0.2",
-    "description": "__MSG_description__",
+    "description": "__MSG_mt_description__",
     "manifest_version": 2,
     "default_locale": "en",
     "offline_enabled": true,

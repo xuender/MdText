@@ -43,7 +43,7 @@ CHOOSE_ACCEPTS = [
 
 MdTextCtrl = ($scope, $modal, $dialogs)->
   $scope.close = ->
-    dlg = $dialogs.confirm('系统信息','是否退出?')
+    dlg = $dialogs.confirm($scope.i18n('prompted'), $scope.i18n('dyq'))
     dlg.result.then((btn)->
       window.close()
     ,(btn)->
@@ -51,12 +51,12 @@ MdTextCtrl = ($scope, $modal, $dialogs)->
       $('#input').focus()
     )
   $scope.i18n = (key)->
-    chrome.i18n.getMessage(key)
+    if chrome.i18n.getMessage(key) then chrome.i18n.getMessage(key) else key
   $scope.doSave = ->
     $scope.fileEntry.createWriter((writer)->
       writer.onerror  = ->
         $scope.fileEntry = null
-        $dialogs.error('保存错误', '文件无法保存.')
+        $dialogs.error($scope.i18n('prompted'), $scope.i18n('save_error'))
       writer.onwriteend = ->
         $('#input').focus()
       writer.write(new Blob([$scope.input]))
@@ -82,7 +82,7 @@ MdTextCtrl = ($scope, $modal, $dialogs)->
         reader = new FileReader()
         reader.onerror = ->
           $scope.fileEntry = null
-          $dialogs.error('读取错误', '文件无法打开.')
+          $dialogs.error($scope.i18n('prompted'), $scope.i18n('open_error'))
         reader.onloadend = (e)->
           $scope.input = e.target.result
           $scope.$apply()
