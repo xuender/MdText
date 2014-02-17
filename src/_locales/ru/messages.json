@@ -1,0 +1,71 @@
+{
+   "about":{
+    "message": "о"
+  },
+   "bug":{
+    "message": "ошибка"
+  },
+   "close":{
+    "message": "близко"
+  },
+   "coffee":{
+    "message": "Используйте Bitcoins чтобы купить чашку напитка"
+  },
+   "dyq":{
+    "message": "Будь выйти?"
+  },
+   "edit":{
+    "message": "редактор"
+  },
+   "feature":{
+    "message": "особенность"
+  },
+   "file":{
+    "message": "файл"
+  },
+   "help":{
+    "message": "Помогите"
+  },
+   "live_preview":{
+    "message": "Live Preview"
+  },
+   "mt_description":{
+    "message": "Формат уценки простой текстовый редактор, поддержка просмотр в реальном времени."
+  },
+   "mt_name":{
+    "message": "MdText редактор"
+  },
+   "mt_title":{
+    "message": "MdText - уценки текстовый редактор"
+  },
+   "new":{
+    "message": "новый"
+  },
+   "open":{
+    "message": "открыто"
+  },
+   "open_error":{
+    "message": "Исключение! Файл не читается."
+  },
+   "preview":{
+    "message": "предварительный просмотр"
+  },
+   "prompted":{
+    "message": "Движимые"
+  },
+   "question":{
+    "message": "вопрос"
+  },
+   "quit":{
+    "message": "выход"
+  },
+   "reviews":{
+    "message": "Отзывы"
+  },
+   "save":{
+    "message": "экономить"
+  },
+   "save_error":{
+    "message": "Исключение! Файлы не могут быть сохранены."
+  }
+}

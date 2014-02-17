@@ -1,209 +1,71 @@
 {
-  "coffee": {
-    "message": "使用比特币给作者买杯饮料"
+   "about":{
+    "message": "关于"
   },
-  "command": {
-    "message": "命令"
-  },
-  "settings": {
-    "message": "设置"
-  },
-  "close": {
-    "message": "关闭"
-  },
-  "about": {
-    "message": "关于工具箱"
-  },
-  "help": {
-    "message": "帮助"
-  },
-  "undo": {
-    "message": "撤销"
-  },
-  "feature": {
-    "message": "功能建议"
-  },
-  "question": {
-    "message": "问题"
-  },
-  "bug": {
+   "bug":{
     "message": "错误"
   },
-  "reviews": {
+   "close":{
+    "message": "关闭"
+  },
+   "coffee":{
+    "message": "使用比特币给作者买杯饮料"
+  },
+   "dyq":{
+    "message": "是否退出？"
+  },
+   "edit":{
+    "message": "编辑"
+  },
+   "feature":{
+    "message": "功能建议"
+  },
+   "file":{
+    "message": "文件"
+  },
+   "help":{
+    "message": "帮助"
+  },
+   "live_preview":{
+    "message": "实时预览"
+  },
+   "mt_description":{
+    "message": "简单的Markdown格式文本编辑器，支持实时预览。"
+  },
+   "mt_name":{
+    "message": "MdText 编辑器"
+  },
+   "mt_title":{
+    "message": "MdText - Markdown 文本编辑器"
+  },
+   "new":{
+    "message": "新建"
+  },
+   "open":{
+    "message": "打开"
+  },
+   "open_error":{
+    "message": "异常！文件无法读取。"
+  },
+   "preview":{
+    "message": "预览"
+  },
+   "prompted":{
+    "message": "系统提示"
+  },
+   "question":{
+    "message": "问题"
+  },
+   "quit":{
+    "message": "退出"
+  },
+   "reviews":{
     "message": "评论"
   },
-  "name": {
-    "message": "工具箱"
+   "save":{
+    "message": "保存"
   },
-  "title": {
-    "message": "工具箱 - 常用工具集"
-  },
-  "g_sort": {
-    "message": "排序"
-  },
-  "g_sort_title": {
-    "message": "文本顺序调整"
-  },
-  "sort": {
-    "message": "文本顺序"
-  },
-  "sort_title": {
-    "message": "文本顺序排列"
-  },
-  "desc": {
-    "message": "文本倒序"
-  },
-  "desc_title": {
-    "message": "文本倒序排列"
-  },
-  "sortNumber": {
-    "message": "数字顺序"
-  },
-  "sortNumber_title": {
-    "message": "文本按照数字顺序排列"
-  },
-  "descNumber": {
-    "message": "数字倒序"
-  },
-  "descNumber_title": {
-    "message": "文本按照数字倒序排列"
-  },
-  "reverse": {
-    "message": "逆转"
-  },
-  "reverse_title": {
-    "message": "文本顺序逆转"
-  },
-  "g_unique": {
-    "message": "去重"
-  },
-  "g_unique_title": {
-    "message": "文本重复处理"
-  },
-  "unique": {
-    "message": "唯一"
-  },
-  "unique_title": {
-    "message": "移除重复，确保唯一"
-  },
-  "repeated": {
-    "message": "重复"
-  },
-  "repeated_title": {
-    "message": "仅显示重复行"
-  },
-  "g_trim": {
-    "message": "修整"
-  },
-  "g_trim_title": {
-    "message": "文本修整"
-  },
-  "trim": {
-    "message": "首尾修整"
-  },
-  "trim_title": {
-    "message": "去除文本首尾空格"
-  },
-  "trim_row": {
-    "message": "逐行修整"
-  },
-  "trim_row_title": {
-    "message": "逐行去除文本首位空格"
-  },
-  "input_label": {
-    "message": "输入"
-  },
-  "input_title": {
-    "message": "使用复制粘帖输入待处理的文本"
-  },
-  "output_title": {
-    "message": "文本处理结果"
-  },
-  "output_label": {
-    "message": "输出"
-  },
-  "t_row": {
-    "message": "行"
-  },
-  "t_byte": {
-    "message": "字节"
-  },
-  "one_label": {
-    "message": "工具栏"
-  },
-  "swap": {
-    "message": "输入输出交换"
-  },
-  "swap_title": {
-    "message": "输入输出内容交换,可对输出结果进一步处理"
-  },
-  "repeat": {
-    "message": "重复命令"
-  },
-  "repeat_title": {
-    "message": "顺序执行右侧的命令"
-  },
-  "clean": {
-    "message": "清除命令"
-  },
-  "clean_title": {
-    "message": "清除右侧的历史命令"
-  },
-  "new_tab_title": {
-    "message": "在新的页面打开"
-  },
-  "sha1": {
-    "message": "SHA1摘要"
-  },
-  "md5": {
-    "message": "MD5摘要"
-  },
-  "sha1_title": {
-    "message": "生成SHA1摘要"
-  },
-  "md5_title": {
-    "message": "生成MD5摘要"
-  },
-  "g_hash": {
-    "message": "摘要"
-  },
-  "g_hash_title": {
-    "message": "生成字串摘要码"
-  },
-  "store": {
-    "message": "Chrome 网上应用商店"
-  },
-  "g_beautify": {
-    "message": "格式化"
-  },
-  "g_beautify_title": {
-    "message": "代码格式化"
-  },
-  "js": {
-    "message": "JavaScript"
-  },
-  "css": {
-    "message": "CSS"
-  },
-  "html": {
-    "message": "HTML"
-  },
-  "sql": {
-    "message": "SQL"
-  },
-  "json": {
-    "message": "JSON"
-  },
-  "blank": {
-    "message": "删除空行"
-  },
-  "blank_title": {
-    "message": "删除空白行"
-  },
-  "online": {
-    "message": "在线版工具箱"
-  },
-  "description": {
-    "message": "Chrome 工具箱,有用的工具集，常用文本处理工具,例如：排序,去重,修整,MD5摘要,SHA1摘要，代码格式化"
+   "save_error":{
+    "message": "异常！文件无法保存。"
   }
 }

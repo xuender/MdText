@@ -43,20 +43,21 @@ CHOOSE_ACCEPTS = [
 
 MdTextCtrl = ($scope, $modal, $dialogs)->
   $scope.close = ->
-    dlg = $dialogs.confirm('系统信息','是否退出?')
+    dlg = $dialogs.confirm($scope.i18n('prompted'), $scope.i18n('dyq'))
     dlg.result.then((btn)->
+      TRACKER.sendEvent('command', 'sys', 'close')
       window.close()
     ,(btn)->
       console.info 'no'
       $('#input').focus()
     )
   $scope.i18n = (key)->
-    chrome.i18n.getMessage(key)
+    if chrome.i18n.getMessage(key) then chrome.i18n.getMessage(key) else key
   $scope.doSave = ->
     $scope.fileEntry.createWriter((writer)->
       writer.onerror  = ->
         $scope.fileEntry = null
-        $dialogs.error('保存错误', '文件无法保存.')
+        $dialogs.error($scope.i18n('prompted'), $scope.i18n('save_error'))
       writer.onwriteend = ->
         $('#input').focus()
       writer.write(new Blob([$scope.input]))
@@ -72,6 +73,7 @@ MdTextCtrl = ($scope, $modal, $dialogs)->
         $scope.fileEntry = fileEntry
         $scope.doSave()
       )
+    TRACKER.sendEvent('command', 'sys', 'save')
   $scope.open = ->
     chrome.fileSystem.chooseEntry({
       type: 'openWritableFile'
@@ -82,13 +84,14 @@ MdTextCtrl = ($scope, $modal, $dialogs)->
         reader = new FileReader()
         reader.onerror = ->
           $scope.fileEntry = null
-          $dialogs.error('读取错误', '文件无法打开.')
+          $dialogs.error($scope.i18n('prompted'), $scope.i18n('open_error'))
         reader.onloadend = (e)->
           $scope.input = e.target.result
           $scope.$apply()
         reader.readAsText(file)
       )
     )
+    TRACKER.sendEvent('command', 'sys', 'open')
     $('#input').focus()
   $scope.input = ''
   $scope.new = ->
@@ -96,6 +99,7 @@ MdTextCtrl = ($scope, $modal, $dialogs)->
     $scope.isLivePreview = false
     $scope.isEdit = true
     $scope.isPreview = false
+    TRACKER.sendEvent('command', 'sys', 'new')
     $('#input').focus()
   $scope.$watch('input', (n, o)->
     $scope.output = markdown.toHTML($scope.input)
@@ -112,10 +116,12 @@ MdTextCtrl = ($scope, $modal, $dialogs)->
   $scope.preview = ->
     $scope.isPreview = !$scope.isPreview
     $('#input').focus()
+    TRACKER.sendEvent('command', 'sys', 'preview')
   $scope.livePreview = ->
     $scope.isLivePreview = !$scope.isLivePreview
     $scope.isEdit = true
     $scope.isPreview = $scope.isLivePreview
+    TRACKER.sendEvent('command', 'sys', 'livePreview')
   $scope.showAbout = false
   $scope.about = ->
     if $scope.showAbout
