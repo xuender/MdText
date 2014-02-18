@@ -6,7 +6,7 @@ Distributed under terms of the MIT license.
 ###
 $ ->
   $('title').text(chrome.i18n.getMessage('title'))
-  $('#input').focus()
+  $('#input')[0].focus()
   $(window).resize(->
     doResize()
   )
@@ -49,7 +49,7 @@ MdTextCtrl = ($scope, $modal, $dialogs)->
       window.close()
     ,(btn)->
       console.info 'no'
-      $('#input').focus()
+      $('#input')[0].focus()
     )
   $scope.i18n = (key)->
     if chrome.i18n.getMessage(key) then chrome.i18n.getMessage(key) else key
@@ -59,7 +59,7 @@ MdTextCtrl = ($scope, $modal, $dialogs)->
         $scope.fileEntry = null
         $dialogs.error($scope.i18n('prompted'), $scope.i18n('save_error'))
       writer.onwriteend = ->
-        $('#input').focus()
+        $('#input')[0].focus()
       writer.write(new Blob([$scope.input]))
     )
   $scope.save = ->
@@ -92,15 +92,23 @@ MdTextCtrl = ($scope, $modal, $dialogs)->
       )
     )
     TRACKER.sendEvent('command', 'sys', 'open')
-    $('#input').focus()
+    $('#input')[0].focus()
   $scope.input = ''
   $scope.new = ->
+    chrome.app.window.create('index.html',
+      frame: "none"
+      bounds:
+        'width': 800
+        'height': 550
+      minWidth: 770
+      minHeight: 500
+    )
+  $scope.newFile = ->
     $scope.input = ''
     $scope.isLivePreview = false
     $scope.isEdit = true
     $scope.isPreview = false
-    TRACKER.sendEvent('command', 'sys', 'new')
-    $('#input').focus()
+    $('#input')[0].focus()
   $scope.$watch('input', (n, o)->
     $scope.output = markdown.toHTML($scope.input)
   )
@@ -111,11 +119,11 @@ MdTextCtrl = ($scope, $modal, $dialogs)->
       $scope.isEdit = true
     else
       $scope.isEdit = !n
-    $('#input').focus()
+    $('#input')[0].focus()
   )
   $scope.preview = ->
     $scope.isPreview = !$scope.isPreview
-    $('#input').focus()
+    $('#input')[0].focus()
     TRACKER.sendEvent('command', 'sys', 'preview')
   $scope.livePreview = ->
     $scope.isLivePreview = !$scope.isLivePreview
@@ -138,11 +146,11 @@ MdTextCtrl = ($scope, $modal, $dialogs)->
     ,->
       $scope.showAbout = false
     )
-    $('#input').focus()
+    $('#input')[0].focus()
     TRACKER.sendEvent('command', 'sys', 'about')
   $scope.show = true
-  $scope.new()
+  $scope.newFile()
   doResize()
-  $('#input').focus()
+  $('#input')[0].focus()
 
 MdTextCtrl.$inject = ['$scope', '$modal', '$dialogs']

@@ -10,9 +10,7 @@ chrome.app.runtime.onLaunched.addListener(->
     bounds:
       'width': 800
       'height': 550
-    id: 'MdTest'
     minWidth: 770
     minHeight: 500
-    singleton: true
   )
 )
