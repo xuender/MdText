@@ -11,11 +11,10 @@ $ ->
     doResize()
   )
   window.onfocus = ->
-    console.log("focus")
     focusTitlebars(true)
+    $('#input')[0].focus()
 
   window.onblur = ->
-    console.log("blur")
     focusTitlebars(false)
 
 focusTitlebars = (focus)->
@@ -43,14 +42,19 @@ CHOOSE_ACCEPTS = [
 
 MdTextCtrl = ($scope, $modal, $dialogs)->
   $scope.close = ->
-    dlg = $dialogs.confirm($scope.i18n('prompted'), $scope.i18n('dyq'))
-    dlg.result.then((btn)->
+    if $scope.isUpdate
+      dlg = $dialogs.confirm($scope.i18n('prompted'), $scope.i18n('dyq'))
+      dlg.result.then((btn)->
+        TRACKER.sendEvent('command', 'sys', 'close')
+        window.close()
+      ,(btn)->
+        console.info 'no'
+        $('#input')[0].focus()
+      )
+    else
       TRACKER.sendEvent('command', 'sys', 'close')
       window.close()
-    ,(btn)->
-      console.info 'no'
-      $('#input')[0].focus()
-    )
+
   $scope.i18n = (key)->
     if chrome.i18n.getMessage(key) then chrome.i18n.getMessage(key) else key
   $scope.doSave = ->
@@ -61,6 +65,7 @@ MdTextCtrl = ($scope, $modal, $dialogs)->
       writer.onwriteend = ->
         $('#input')[0].focus()
       writer.write(new Blob([$scope.input]))
+      $scope.isUpdate = false
     )
   $scope.save = ->
     if $scope.fileEntry
@@ -75,6 +80,16 @@ MdTextCtrl = ($scope, $modal, $dialogs)->
       )
     TRACKER.sendEvent('command', 'sys', 'save')
   $scope.open = ->
+    if $scope.isUpdate
+      dlg = $dialogs.confirm($scope.i18n('prompted'), '是否放弃尚未保存的修改?')
+      dlg.result.then((btn)->
+        $scope.openFile()
+      ,(btn)->
+        1
+      )
+    else
+      $scope.openFile()
+  $scope.openFile = ->
     chrome.fileSystem.chooseEntry({
       type: 'openWritableFile'
       accepts: CHOOSE_ACCEPTS
@@ -107,10 +122,13 @@ MdTextCtrl = ($scope, $modal, $dialogs)->
     $scope.input = ''
     $scope.isLivePreview = false
     $scope.isEdit = true
+    $scope.isUpdate = false
     $scope.isPreview = false
     $('#input')[0].focus()
   $scope.$watch('input', (n, o)->
     $scope.output = markdown.toHTML($scope.input)
+    if n != o
+      $scope.isUpdate = true
   )
   $scope.$watch('isPreview', (n, o)->
     if !n
